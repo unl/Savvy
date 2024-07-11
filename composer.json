@@ -1,5 +1,5 @@
 {
-    "name": "saltybeagle/savvy",
+    "name": "unl/savvy",
     "description": "Savvy is a powerful but lightweight object-oriented template system for PHP.",
     "homepage": "http://wdn.unl.edu/",
     "license": "BSD-3-Clause",
@@ -11,6 +11,10 @@
         {
             "name": "Gregory Beaver (cellog)",
             "email": "cellog@php.net"
+        },
+        {
+            "name": "Tommy Neumann (tommyneu)",
+            "email": "tneumann9@unl.edu"
         }
     ],
     "autoload": {
