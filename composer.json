@@ -17,6 +17,9 @@
             "email": "tneumann9@unl.edu"
         }
     ],
+    "require": {
+        "php": "^8.1"
+    },
     "autoload": {
         "psr-0": { "Savvy": "src/" }
     }
