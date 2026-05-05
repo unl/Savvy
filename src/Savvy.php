@@ -843,7 +843,7 @@ class Savvy
       * @return string
       * @throws
       */
-    public function renderAssocArray(array $array, $selected, Closure $template = null)
+    public function renderAssocArray(array $array, $selected, ?Closure $template = null)
     {
         // backwards compatible signature where selected is optional
         if (null === $template) {
