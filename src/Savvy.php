@@ -96,7 +96,7 @@ class Savvy
      * @param array $config An associative array of configuration keys for
      * the Savvy object.  Any, or none, of the keys may be set.
      */
-    public function __construct($config = null)
+    public function __construct(?array $config = null)
     {
         // set the default template search path
         if (isset($config['template_path'])) {
@@ -348,7 +348,7 @@ class Savvy
      * returns the entire configuration array.
      * @return mixed A copy of the $this->__config array.
      */
-    public function getConfig($key = null)
+    public function getConfig(?string $key = null)
     {
         if (is_null($key)) {
             // no key requested, return the entire config array
@@ -575,7 +575,7 @@ class Savvy
      * false, resets to the current directory only.
      * @return $this
      */
-    public function setTemplatePath($path = null)
+    public function setTemplatePath(mixed $path = null)
     {
         // clear out the prior search dirs, add default
         $this->template_path = array('./');
@@ -724,7 +724,7 @@ class Savvy
      * @param string $template A template to display data in.
      * @return string The template output
      */
-    public function render($mixed = null, $template = null)
+    public function render($mixed = null, ?string $template = null)
     {
         $method = 'render'.gettype($mixed);
 
@@ -739,22 +739,22 @@ class Savvy
      * @return void
      * @throws UnexpectedValueException
      */
-    protected function renderResource($resouce, $template = null)
+    protected function renderResource(mixed $resouce, ?string $template = null)
     {
         throw new Savvy_UnexpectedValueException('No way to render a resource!');
     }
 
-    protected function renderBoolean($bool, $template = null)
+    protected function renderBoolean(bool $bool, ?string $template = null)
     {
         return $this->renderString((string) $bool, $template);
     }
 
-    protected function renderDouble($double, $template = null)
+    protected function renderDouble(mixed $double, ?string $template = null)
     {
         return $this->renderString($double, $template);
     }
 
-    protected function renderInteger($int, $template = null)
+    protected function renderInteger(int $int, ?string $template = null)
     {
         return $this->renderString($int, $template);
     }
@@ -766,7 +766,7 @@ class Savvy
      * @param string $template A template to display the string in
      * @return string
      */
-    protected function renderString($string, $template = null)
+    protected function renderString(string $string, ?string $template = null)
     {
         if ($this->__config['escape']) {
             $string = $this->escape($string);
@@ -790,7 +790,7 @@ class Savvy
      * @param string $template Template to render
      * @return string Rendered output
      */
-    protected function renderArray(array $array, $template = null)
+    protected function renderArray(array $array, ?string $template = null)
     {
         return $this->renderTraversable($array);
     }
@@ -802,7 +802,7 @@ class Savvy
      * @param string $template Template to render
      * @return string
      */
-    protected function renderTraversable($array, $template = null)
+    protected function renderTraversable(mixed $array, ?string $template = null)
     {
         $ret = '';
         foreach ($array as $element) {
@@ -822,7 +822,7 @@ class Savvy
      * @param string $elsetemplate   If false, render using this template
      * @return string
      */
-    public function renderElse($condition, $render, $else, $rendertemplate = null, $elsetemplate = null)
+    public function renderElse($condition, $render, $else, ?string $rendertemplate = null, ?string $elsetemplate = null)
     {
         if ($condition) {
             return $this->render($render, $rendertemplate);
@@ -903,7 +903,7 @@ class Savvy
      *
      * @return string Rendered output
      */
-    protected function renderObject($object, $template = null)
+    protected function renderObject($object, ?string $template = null)
     {
         if ($this->__config['escape']) {
             if (!$object instanceof Savvy_ObjectProxy) {
@@ -930,7 +930,7 @@ class Savvy
      *
      * @return string Rendered output
      */
-    protected function renderNULL($null, $template = null)
+    protected function renderNULL($null, ?string $template = null)
     {
         if ($template) {
             return $this->fetch(null, $template);
@@ -946,7 +946,7 @@ class Savvy
      * @param string $template The template name to find a template file from
      * @return string
      */
-    protected function fetch($mixed, $template = null)
+    protected function fetch($mixed, ?string $template = null)
     {
         if ($template) {
             $this->template = $template;
@@ -1006,7 +1006,7 @@ class Savvy
      * @throws Savvy_UnexpectedValueException
      * @throws Savvy_Exception
      */
-    public function template($tpl = null)
+    public function template(?string $tpl = null)
     {
         // find the template source.
         $file = $this->findTemplateFile($tpl);
